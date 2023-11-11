@@ -1,1 +1,1 @@
-# spr-6
+# spr-6 - Decorator Pattern
