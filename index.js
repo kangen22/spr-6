@@ -29,45 +29,51 @@ class Americano extends Coffee {
     }
 };
 
-class Sugar {
+
+
+class CoffeeDecorator extends Coffee {
     constructor(coffee) {
-        this.coffee = coffee;
+        super();
+        this.decoratedCoffee = coffee;
     }
 
     getCost() {
-        return this.coffee.getCost();
+        return this.decoratedCoffee.getCost();
     }
 
     getDescription() {
-        return this.coffee.getDescription() + ', with sugar';
-    }
-};
-
-class BananaMilk {
-    constructor(coffee) {
-        this.coffee = coffee;
-    }
-
-    getCost() {
-        return this.coffee.getCost() + 0.5;
-    }
-
-    getDescription() {
-        return this.coffee.getDescription() + ', with banana milk';
+        return this.decoratedCoffee.getDescription();
     }
 }
 
-class VanilaSyrop {
-    constructor(coffee) {
-        this.coffee = coffee;
-    }
 
+class Sugar extends CoffeeDecorator{
     getCost() {
-        return this.coffee.getCost() + 0.3;
+        return super.getCost();
     }
 
     getDescription() {
-        return this.coffee.getDescription() + ', with vanila syrop';
+        return super.getDescription() + ', with sugar';
+    }
+};
+
+class BananaMilk extends CoffeeDecorator {
+    getCost() {
+        return super.getCost() + 0.5;
+    }
+
+    getDescription() {
+        return super.getDescription() + ', with banana milk';
+    }
+}
+
+class VanilaSyrop extends CoffeeDecorator{
+    getCost() {
+        return super.getCost() + 0.3;
+    }
+
+    getDescription() {
+        return super.getDescription() + ', with vanila syrop';
     }
 }
 
@@ -87,6 +93,7 @@ let latte = new Latte();
 latte = main(latte, [BananaMilk, Sugar, VanilaSyrop])
 
 let americano = new Americano();
-latte = main(americano, [BananaMilk, Sugar])
+americano = main(americano, [BananaMilk, Sugar]);
+
 
 
